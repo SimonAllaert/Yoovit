@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 
 export default class MainStatusBar extends React.Component {
   render () {
