@@ -7,86 +7,88 @@ DIT MOET EEN API CALL WORDEN OM ALLE FILMS OP TE HALEN
 
 const DATA = [
     {
-        id: "1",
-        title: 'FILM 1',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "1",
+        title_1: 'FILM 1',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
     {
-        id: "2",
-        title: 'FILM 2',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "2",
+        title_1: 'FILM 2',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
     {
-        id: "3",
-        title: 'FILM 3',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "3",
+        title_1: 'FILM 3',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
     {
-        id: "4",
-        title: 'FILM 4',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "4",
+        title_1: 'FILM 4',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
     {
-        id: "5",
-        title: 'FILM 5',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "5",
+        title_1: 'FILM 5',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
     {
-        id: "6",
-        title: 'FILM 6',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "6",
+        title_1: 'FILM 6',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
     {
-        id: "7",
-        title: 'FILM 7',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "7",
+        title_1: 'FILM 7',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
     {
-        id: "8",
-        title: 'FILM 8',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "8",
+        title_1: 'FILM 8',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
     {
-        id: "9",
-        title: 'FILM 9',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
+        nid: "9",
+        title_1: 'FILM 9',
+        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
     },
 ];
 
-const Film = ({ item, onPress }) => {
-
+const Film = ({ item, openDetails }) => {
 
     return (
-    <TouchableOpacity onPress={onPress} style={styles.filmInList}>
+    <TouchableOpacity onPress={() => openDetails(item)} style={styles.filmInList}>
         <Image 
-            source={{uri: item.img}} 
+            source={{uri: item.field_poster}} 
             style={styles.image}/>
-        <Text> {item.title} </Text>
+        <Text> {item.title_1} </Text>
     </TouchableOpacity>
     );
 };
 
-const FilmsOverview = () => {
+export default class FilmsOverview extends React.Component {
 
-  const renderItem = ({ item }) => {
+  renderItem = ({ item }) => {
       return (
         <Film 
             item={item}
-            onPress={() => {return;}}
+            openDetails={this.props.openDetails}
         />
       );
   };
+
   
-  return (
-    <View style={styles.container}>
-        <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
-        />
-    </View>
-  );
+  render () {
+    return (
+        <View style={styles.container}>
+            <FlatList
+                data={DATA}
+                renderItem={this.renderItem}
+                keyExtractor={(item) => item.nid}
+                horizontal={true}
+            />
+        </View>
+    );
+  };
 };
 
 const styles = StyleSheet.create({
@@ -104,5 +106,3 @@ const styles = StyleSheet.create({
       marginHorizontal: 10,
   },
 });
-
-export default FilmsOverview;
