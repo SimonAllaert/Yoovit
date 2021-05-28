@@ -6,100 +6,75 @@ DIT MOET EEN API CALL WORDEN OM ALLE SERIES OP TE HALEN
 */
 
 
-const DATA = [
-    {
-        id: "1",
-        title: 'SERIES 1',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        id: "2",
-        title: 'SERIES 2',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        id: "3",
-        title: 'SERIES 3',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        id: "4",
-        title: 'SERIES 4',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        id: "5",
-        title: 'SERIES 5',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        id: "6",
-        title: 'SERIES 6',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        id: "7",
-        title: 'SERIES 7',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        id: "8",
-        title: 'SERIES 8',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        id: "9",
-        title: 'SERIES 9',
-        img: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-];
+const Serie = ({ item, openDetailsSeries }) => {
+    return (
+        <TouchableOpacity onPress={() => openDetailsSeries(item)} style={styles.SerieInList}>
+            <Image 
+                source={{uri: 'http://yoovit.site/' + item.field_posterserie}} 
+                style={styles.image}/>
+            <Text style={styles.title}> {item.title_1} </Text>
+        </TouchableOpacity>
+     );
+};
 
-const Serie = ({ item, onPress }) => (
-    <TouchableOpacity onPress={onPress} style={styles.SerieInList}>
-        <Image 
-            source={{uri: item.img}} 
-            style={styles.image}/>
-        <Text> {item.title} </Text>
-    </TouchableOpacity>
-);
+export default class SeriesOverview extends React.Component {
+    
+    constructor(props){
+        super(props)
+        this.state={
+            dataSeries:[]
+        }
+    }
 
-const SeriesOverview = () => {
+    componentDidMount() {
+        fetch('http://yoovit.site/api/series')
+          .then((apiresponse) => apiresponse.json())
+          .then((json) => {
+            this.setState({ dataSeries: json });
+          })
+          .catch((error) => console.error(error));
+      }
 
-  const renderItem = ({ item }) => {
-      return (
-        <Serie 
-            item={item}
-            onPress={() => {return;}}
-        />
-      );
-  };
+    renderItem = ({ item }) => {
+        return (
+            <Serie 
+                item={item}
+                openDetailsSeries={this.props.openDetailsSeries}
+            />
+        );
+    };
   
-  return (
-    <View style={styles.container}>
-        <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            horizontal={true}
-        />
-    </View>
-  );
+    render () {
+        const { dataSeries } = this.state;
+        return(
+            <View style={styles.container}>
+                <FlatList
+                    data={dataSeries}
+                    renderItem={this.renderItem}
+                    keyExtractor={(item) => item.nid}
+                    horizontal={true}
+                />
+            </View>
+        );
+    };
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
   image: {
     height: 200,
     width: 200,
+    marginLeft: 20, /* margin geven*/ 
+  },
+  title: {
+    textAlign: 'right',
   },
   SerieInList: {
     marginHorizontal: 10,
   },
 });
-
-export default SeriesOverview;

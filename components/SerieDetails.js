@@ -3,30 +3,30 @@ import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 
-export default class FilmDetails extends React.Component {
+export default class SerieDetails extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            film: props.film,
+            series: props.series,
         }
     }
 
     componentWillUpdate(nextProps, nextState) {
-        nextState.film = nextProps.film;
+        nextState.series = nextProps.series;
     }
 
   render () {
     return (
         <View style={styles.container}>
-          <MainHeader/>
-          <MainStatusBar/>
-            <Text style={styles.title}>{this.state.film.title_1}</Text>
+            <MainHeader/>
+            <MainStatusBar/>
+            <Text style={styles.title}>{this.state.series.title_1}</Text>
             <Image 
-                source={{uri: 'http://yoovit.site/' + this.state.film.field_poster}}
+                source={{uri: 'http://yoovit.site/' + this.state.series.field_posterserie}}
                 style={styles.image}
             />
-            <Text>{this.state.film.body}</Text>
+            <Text>{this.state.series.body}</Text>
         </View>
     );
   };
