@@ -5,6 +5,7 @@ import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity } from 'react
 DIT MOET EEN API CALL WORDEN OM ALLE SERIES OP TE HALEN
 */
 
+
 const DATA = [
     {
         id: "1",
@@ -53,8 +54,8 @@ const DATA = [
     },
 ];
 
-const Film = ({ item, onPress }) => (
-    <TouchableOpacity onPress={onPress} style={styles.filmInList}>
+const Serie = ({ item, onPress }) => (
+    <TouchableOpacity onPress={onPress} style={styles.SerieInList}>
         <Image 
             source={{uri: item.img}} 
             style={styles.image}/>
@@ -66,7 +67,7 @@ const SeriesOverview = () => {
 
   const renderItem = ({ item }) => {
       return (
-        <Film 
+        <Serie 
             item={item}
             onPress={() => {return;}}
         />
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     height: 200,
     width: 200,
   },
-  filmInList: {
+  SerieInList: {
     marginHorizontal: 10,
   },
 });

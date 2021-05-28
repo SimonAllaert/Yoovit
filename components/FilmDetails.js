@@ -19,10 +19,10 @@ export default class FilmDetails extends React.Component {
         <View style={styles.container}>
             <Text>{this.state.film.title_1}</Text>
             <Image 
-                source={{uri: this.state.film.field_poster}}
+                source={{uri: 'http://yoovit.site/' + this.state.film.field_poster}}
                 style={styles.image}
             />
-            <Text>Beschrijving ding</Text>
+            <Text>{this.state.film.body}</Text>
         </View>
     );
   };
