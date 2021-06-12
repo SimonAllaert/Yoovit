@@ -1,71 +1,34 @@
-import React from 'react';
-import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity } from 'react-native';
-
-/*
-DIT MOET EEN API CALL WORDEN OM ALLE FILMS OP TE HALEN
-*/
-
-const DATA = [
-    {
-        nid: "1",
-        title_1: 'FILM 1',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        nid: "2",
-        title_1: 'FILM 2',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        nid: "3",
-        title_1: 'FILM 3',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        nid: "4",
-        title_1: 'FILM 4',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        nid: "5",
-        title_1: 'FILM 5',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        nid: "6",
-        title_1: 'FILM 6',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        nid: "7",
-        title_1: 'FILM 7',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        nid: "8",
-        title_1: 'FILM 8',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-    {
-        nid: "9",
-        title_1: 'FILM 9',
-        field_poster: 'https://www.kindpng.com/picc/m/773-7734668_clapperboard-png-image-file-film-clap-transparent-png.png',
-    },
-];
+import React,{ Component } from 'react';
+import { StyleSheet, FlatList, View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 const Film = ({ item, openDetails }) => {
-
     return (
     <TouchableOpacity onPress={() => openDetails(item)} style={styles.filmInList}>
         <Image 
-            source={{uri: item.field_poster}} 
+            source={{uri: 'http://yoovit.site/' + item.field_poster}}  /* Url + json item field_poster koppelen */ 
             style={styles.image}/>
-        <Text> {item.title_1} </Text>
+        <Text style={styles.title}> {item.title_1} {/* Hier komt de kopie right te staan*/}</Text> 
     </TouchableOpacity>
     );
 };
 
 export default class FilmsOverview extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state={
+            data:[]
+        }
+    }
+
+    componentDidMount() {
+        fetch('http://yoovit.site/api/films')
+          .then((response) => response.json())
+          .then((json) => {
+            this.setState({ data: json });
+          })
+          .catch((error) => console.error(error));
+      }
 
   renderItem = ({ item }) => {
       return (
@@ -76,12 +39,12 @@ export default class FilmsOverview extends React.Component {
       );
   };
 
-  
   render () {
+    const { data } = this.state;
     return (
         <View style={styles.container}>
             <FlatList
-                data={DATA}
+                data={data}
                 renderItem={this.renderItem}
                 keyExtractor={(item) => item.nid}
                 horizontal={true}
@@ -95,12 +58,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
   image: {
       height: 200,
       width: 200,
+      marginLeft: 20, /* margin geven*/ 
+  },
+  title: {
+    textAlign: 'right',
   },
   filmInList: {
       marginHorizontal: 10,
