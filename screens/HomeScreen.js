@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
     alignItems: 'flex-start',
+    backgroundColor: "#ffffff"
     
   },
   titel: {
