@@ -27,6 +27,7 @@ export default class SerieDetails extends React.Component {
                 style={styles.image}
             />
             <Text>{this.state.series.body}</Text>
+            {/*<Text style={styles.title}>{this.state.series.field_locatie_serie}</Text>*/}
         </View>
     );
   };

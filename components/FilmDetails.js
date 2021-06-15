@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Button } from 'react-native';
+import { StyleSheet, View, Text, Image, Button, FlatList } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 
@@ -27,6 +27,7 @@ export default class FilmDetails extends React.Component {
                 style={styles.image}
             />
             <Text>{this.state.film.body}</Text>
+             {/*<Text>{this.state.film.field_locatie}</Text>*/}
         </View>
     );
   };
@@ -41,8 +42,9 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 200,
-    width: 200,
+    width:400,
     justifyContent:'center',
+    resizeMode: "cover",
 
   },
   title: {

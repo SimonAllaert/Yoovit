@@ -7,6 +7,7 @@ import RoutesScreen from './screens/RouteScreen';
 import LocationsScreen from './screens/LocationsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
+
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {

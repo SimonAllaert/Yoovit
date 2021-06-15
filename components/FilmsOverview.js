@@ -7,7 +7,7 @@ const Film = ({ item, openDetails }) => {
         <Image 
             source={{uri: 'http://yoovit.site/' + item.field_poster}}  /* Url + json item field_poster koppelen */ 
             style={styles.image}/>
-        <Text style={styles.title}> {item.title_1} {/* Hier komt de kopie right te staan*/}</Text> 
+        <Text style={styles.copyright}> {item.field_copyright_posterfilms} {/* Hier komt de kopie right te staan*/}</Text> 
     </TouchableOpacity>
     );
 };
@@ -66,8 +66,9 @@ const styles = StyleSheet.create({
       width: 200,
       marginLeft: 20, /* margin geven*/ 
   },
-  title: {
+  copyright: {
     textAlign: 'right',
+    fontSize: 5,
   },
   filmInList: {
       marginHorizontal: 10,
