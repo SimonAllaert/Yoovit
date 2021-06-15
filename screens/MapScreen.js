@@ -17,7 +17,7 @@ export default class MapScreen extends React.Component {
     this.state={
         locaties:[],
     }
-}
+};
 
   componentDidMount() {
     fetch('http://yoovit.site/api/alle_locaties')
@@ -28,7 +28,7 @@ export default class MapScreen extends React.Component {
         });
       })
       .catch((error) => console.error(error));
-  }
+  };
 
   mapMarkers = () => {
     return this.state.locaties.map((locatie) => <Marker
@@ -41,7 +41,7 @@ export default class MapScreen extends React.Component {
       description={locatie.description__value}
       image={require('../assets/marker.png')}
     ></Marker>)
-  }
+  };
 
   render () {
       return (
