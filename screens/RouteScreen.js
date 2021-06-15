@@ -1,33 +1,34 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import MainStatusBar from '../components/MainStatusBar';
-import MainHeader from '../components/MainHeader';
-import { SearchBar } from 'react-native-elements';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import RouteOverviewScreen from './RouteOverviewScreen';
+import CreateRouteScreen from './CreateRouteScreen';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 export default class RouteScreen extends React.Component {
-  state = {
+  render() {
+    return (
+        <Stack.Navigator initialRouteName="RouteOverview">
+          <Stack.Screen 
+            name="RouteOverview" 
+            component={RouteOverviewScreen}
+            headerMode={null}
+            options={{
+              headerShown: false,
+              animationEnabled: false,
+            }}
+          />
+          <Stack.Screen 
+            name="CreateRoute" 
+            component={CreateRouteScreen}
+            headerMode={null}
+            options={{
+              headerShown: false,
+              animationEnabled: false,
+            }}
+          />
+        </Stack.Navigator>
+    )
   };
-
-  render () {
-      const { search } = this.state;
-
-      return (
-        <View style={styles.container}>
-            <MainHeader/>
-            <MainStatusBar/>
-            <SearchBar
-                placeholder="Zoek voor een locatie"
-                lightTheme
-            />
-            <Text>Voorgestelde routes</Text>
-        </View>
-      );
-    };
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

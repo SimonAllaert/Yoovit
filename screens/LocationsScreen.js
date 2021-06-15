@@ -32,6 +32,7 @@ export default class LocationsScreen extends React.Component {
 
   render () {
       const {locaties} = this.state;
+      
       return (
         <View style={styles.container}>
             <MainHeader/>
