@@ -26,8 +26,9 @@ export default class FilmDetails extends React.Component {
                 source={{uri: 'http://yoovit.site/' + this.state.film.field_poster}}
                 style={styles.image}
             />
-            <Text>{this.state.film.body}</Text>
-             {/*<Text>{this.state.film.field_locatie}</Text>*/}
+            <Text style={styles.bodyText}>
+              {this.state.film.body}
+            </Text>
         </View>
     );
   };
@@ -36,7 +37,6 @@ export default class FilmDetails extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 0,
-    alignItems: 'flex-start',/* Probeem om tekst niet te centreren*/ 
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
@@ -44,8 +44,7 @@ const styles = StyleSheet.create({
     height: 200,
     width:400,
     justifyContent:'center',
-    resizeMode: "cover",
-
+    left: 10,
   },
   title: {
     color:'#006E3E',
@@ -53,5 +52,9 @@ const styles = StyleSheet.create({
     marginTop: 25,
     fontWeight:'bold',
     marginLeft: 30,
+  },
+  bodyText: {
+    left: 10,
+    right: 10,
   },
 });

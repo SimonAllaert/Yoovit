@@ -26,8 +26,9 @@ export default class SerieDetails extends React.Component {
                 source={{uri: 'http://yoovit.site/' + this.state.series.field_posterserie}}
                 style={styles.image}
             />
-            <Text>{this.state.series.body}</Text>
-            {/*<Text style={styles.title}>{this.state.series.field_locatie_serie}</Text>*/}
+            <Text style={styles.bodyText}>
+              {this.state.series.body}
+            </Text>
         </View>
     );
   };
@@ -36,15 +37,13 @@ export default class SerieDetails extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 0,
-    alignItems: 'flex-start',/* Probeem om tekst niet te centreren*/ 
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
     justifyContent: 'center',
   },
   image: {
     height: 200,
     width: 200,
     justifyContent:'center',
-
   },
   title: {
     color:'#006E3E',
@@ -52,5 +51,9 @@ const styles = StyleSheet.create({
     marginTop: 25,
     fontWeight:'bold',
     marginLeft: 30,
+  },
+  bodyText: {
+    left: 10,
+    right: 10,
   },
 });

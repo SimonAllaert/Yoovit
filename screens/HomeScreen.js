@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 import FilmsOverview from '../components/FilmsOverview';
@@ -32,8 +32,7 @@ export default class HomeScreen extends React.Component {
     }, () => 
       this.setState({
         selectedFilm: true,
-      }
-      ), () => alert(item.field_poster)
+      })
     );
   };
 
@@ -43,12 +42,16 @@ export default class HomeScreen extends React.Component {
     }, () => 
       this.setState({
         selectedSerie: true,
-      }
-      ), () => alert(item.field_posterserie)
+      })
     );
   };
 
-  
+  backToHome = () => {
+    this.setState({
+      selectedFilm: false,
+      selectedSerie: false,
+    });
+  };
 
   render () {
       return (
@@ -59,9 +62,17 @@ export default class HomeScreen extends React.Component {
           <View style={this.state.selectedSerie ? styles.container : styles.hiddenContainer}>
             <SerieDetails series={this.state.series}/>        
           </View>
-          <View style={this.state.selectedFilm  || this.state.selectedSerie ? styles.hiddenContainer : styles.container}>
+          <TouchableOpacity 
+            style={(this.state.selectedFilm  || this.state.selectedSerie) ? styles.backButton : styles.hiddenContainer}
+            onPress={this.backToHome}
+          >
+              <Image
+                source={require('../assets/back_button.png')}
+              />
+            </TouchableOpacity>
+          <View style={(this.state.selectedFilm  || this.state.selectedSerie) ? styles.hiddenContainer : styles.container}>
             <MainHeader/>
-            <MainStatusBar/>
+            <MainStatusBar  style={(this.state.selectedFilm  || this.state.selectedSerie) ? styles.hiddenContainer : styles.container}/>
             <Text style={styles.titel}>Films</Text>
             <FilmsOverview openDetails={this.openDetails}/>
             <Text style={styles.titel}>Series</Text>
@@ -76,6 +87,7 @@ const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
     alignItems: 'flex-start',
+    backgroundColor: "#ffffff"
     
   },
   titel: {
@@ -84,6 +96,12 @@ const styles = StyleSheet.create({
     marginTop: 25,
     fontWeight:'bold',
     marginLeft: 30, 
+  },
+  backButton: {
+    backgroundColor: '#00a51e',
+    position: 'absolute',
+    top: 30,
+    left: 20,
   },
   hiddenContainer: {
     display: 'none',
