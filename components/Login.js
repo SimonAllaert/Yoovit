@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Button,TextInput,TouchableOpacity } from 'react-native';
-import Cookie from 'react-native-cookie';
+import { StyleSheet, View, Text, TextInput,TouchableOpacity } from 'react-native';
 
-
+const RCTNetworking = require('react-native/Libraries/Network/RCTNetworking');
+function clearCookies () {
+  RCTNetworking.clearCookies((cleared) => {
+    console.log('Cookies cleared, had cookies=' + cleared.toString())
+  })
+}
 
 export default class Login extends React.Component {
 
@@ -14,6 +18,7 @@ export default class Login extends React.Component {
         }
     }
     async submit() {
+      clearCookies();
       console.log(this.state);
       console.log(
         JSON.stringify({
@@ -51,7 +56,13 @@ export default class Login extends React.Component {
                     <TextInput style={styles.TextInput} placeholder="wachtwoord" secureTextEntry={true} onChangeText={text => this.setState({wachtwoord:text})}/>
                 </View>
                 <Text style={styles.wachtwoordVergeten}> Wachtwoord vergeten? </Text>
-                <View style={styles.button}><Button color="white" title='Login' onPress={()=>(this.submit())}/></View>
+                <View style={styles.button}>
+                  <TouchableOpacity onPress={()=>(this.submit())}>
+                    <Text>
+                      Login
+                    </Text>
+                  </TouchableOpacity>
+                </View>
                 <Text style={styles.registreren}> Nog geen account?
                     <TouchableOpacity>
                       <Text style={styles.registerTextStyle}>Registreer hier</Text>
@@ -84,7 +95,7 @@ const styles = StyleSheet.create({
       color:'#F59600',
     },
     registreren:{
-      marginTop:30,
+      marginTop:10,
       textAlign:"center",
     },
     registerTextStyle:{

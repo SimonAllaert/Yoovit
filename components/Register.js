@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyleSheet, View, Text, Image, Button,TextInput,TouchableOpacity } from 'react-native';
-import { CheckBox } from 'react-native-elements/dist/checkbox/CheckBox';
-import Cookie from 'react-native-cookie';
+import { StyleSheet, View, Text, TextInput,TouchableOpacity } from 'react-native';
 
+const RCTNetworking = require('react-native/Libraries/Network/RCTNetworking');
+function clearCookies () {
+  RCTNetworking.clearCookies((cleared) => {
+    console.log('Cookies cleared, had cookies=' + cleared.toString())
+  })
+}
 
 export default class Register extends React.Component {
 
@@ -18,7 +22,9 @@ export default class Register extends React.Component {
             registrerenActief:false,
         }
     }
+
     async submit() {
+      clearCookies();
       console.log(
         JSON.stringify({
           field_voornaam: [{"value":this.state.voornaam}],
@@ -69,7 +75,7 @@ export default class Register extends React.Component {
             <View style={styles.container}>
               <Text style={styles.text}>Voornaam</Text>
             <View style={styles.VoornaamView}> 
-                <TextInput style={styles.TextInput} placeholder="Vb. Jan" onChangeText={text => this.setState({voornaam:text})}/>
+              <TextInput style={styles.TextInput} placeholder="Vb. Jan" onChangeText={text => this.setState({voornaam:text})}/>
             </View>
             <Text style={styles.text}>Naam</Text>
             <View style={styles.AchternaamView}> 
@@ -87,7 +93,13 @@ export default class Register extends React.Component {
             <View style={styles.BevestigWachtwoordView}> 
                 <TextInput style={styles.TextInput} placeholder="BevestigdWachtwoord" secureTextEntry={true} onChangeText={text => this.setState({bevestigwachtwoord:text})}/>
             </View>
-            <View style={styles.button}><Button title="registreren" color="white" onPress={()=>(this.submit())}/></View>
+            <View style={styles.button}>
+              <TouchableOpacity onPress={()=>(this.submit())}>
+                <Text>
+                  Register
+                </Text>
+              </TouchableOpacity>
+            </View>
 
             {/*<View style={styles.checkboxContainer}>
               <CheckBox value={this.state.voorwaarden} onValueChange={setSelection} style={styles.checkbox}/>

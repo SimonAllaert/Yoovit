@@ -17,7 +17,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
-    "react-native-cookie": "^0.3.0",
+    "react-native-cookies": "^3.3.0",
     "react-native-elements": "^3.4.1",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-maps": "^0.27.1",
