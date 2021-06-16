@@ -9,6 +9,7 @@ import LocationsScreen from './screens/LocationsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import LoginScreen from './screens/LoginScreen';
 
+
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
