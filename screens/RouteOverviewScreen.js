@@ -14,6 +14,19 @@ function GoToCreatRoute() {
   )
 }
 
+const GoToRouteDetails = ({item}) => {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate("RouteDetails", {selectedRoute: item})}>
+        <View style={styles.listElementContainer}>
+          <Text>{item.title}</Text>
+          <Text>{item.field_lengteroute}</Text>
+        </View>
+    </TouchableOpacity>
+  )
+}
+
 export default class RouteOverviewScreen extends React.Component {
   constructor(props){
     super(props)
@@ -27,7 +40,7 @@ export default class RouteOverviewScreen extends React.Component {
       .then((response) => response.json())
       .then((json) => {
         this.setState({ 
-          routes: json
+          routes: json,
         });
       })
       .catch((error) => console.error(error));
@@ -36,14 +49,13 @@ export default class RouteOverviewScreen extends React.Component {
   renderItem = ({ item }) => {
     return (
       <View>
-        <Text style={styles.listItem}>{item.title}</Text>
+        <GoToRouteDetails item={item}/>
       </View>
     );
   };
 
   render () {
       const { routes } = this.state;
-      const { navigation } = this.props;
 
       return (
         <View style={styles.container}>
@@ -53,7 +65,7 @@ export default class RouteOverviewScreen extends React.Component {
             <FlatList
               data={routes}
               renderItem={this.renderItem}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.nid}
             />
             <GoToCreatRoute />
         </View>
@@ -85,5 +97,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     fontSize: 18,
+  },
+  listElementContainer: {
+    display: 'flex',
   },
 });

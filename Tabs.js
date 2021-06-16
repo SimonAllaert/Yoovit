@@ -7,8 +7,6 @@ import MapScreen from './screens/MapScreen';
 import RoutesScreen from './screens/RouteScreen';
 import LocationsScreen from './screens/LocationsScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import RegisterScreen from './screens/RegisterScreen';
-import LoginScreen from './screens/LoginScreen';
 
 
 const Tab = createBottomTabNavigator();
