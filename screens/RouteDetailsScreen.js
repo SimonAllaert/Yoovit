@@ -4,11 +4,11 @@ import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 import { useNavigation } from '@react-navigation/native';
 
-function StartRoute() {
+const StartRoute = ({item}) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("StartRoute")}>
+    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Map", {selectedRoute: item})}>
       <Text>Start route</Text>
     </TouchableOpacity>
   )
@@ -32,7 +32,7 @@ export default class RouteDetailsScreen extends React.Component {
             <Text style={styles.titel}>{selectedRoute.title}</Text>
             <Text>{selectedRoute.field_lengteroute}</Text>
             <Text>{selectedRoute.body}</Text>
-            <StartRoute />
+            <StartRoute item={selectedRoute} />
         </View>
       );
     };

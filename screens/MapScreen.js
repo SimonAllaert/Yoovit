@@ -16,6 +16,7 @@ export default class MapScreen extends React.Component {
     super(props)
     this.state={
         locaties:[],
+        initialRegion,
     }
 };
 
@@ -24,7 +25,8 @@ export default class MapScreen extends React.Component {
       .then((response) => response.json())
       .then((json) => {
         this.setState({ 
-          locaties: json
+          locaties: json,
+          initialRegion: initialRegion,
         });
       })
       .catch((error) => console.error(error));
@@ -43,20 +45,43 @@ export default class MapScreen extends React.Component {
     ></Marker>)
   };
 
-  render () {
-      return (
-        <View style={styles.container}>
-            <MainHeader/>
-            <MainStatusBar/>
-            <MapView 
-              style={styles.map}
-              initialRegion={initialRegion}
-            >
-              {this.mapMarkers()}
-            </MapView>
-        </View>
-      );
+  decypherCoords(coords) {
+    var pairs = coords.split(", ");
+    var splitPairs = [];
+    for (var pair of pairs) {
+      splitPairs.push(pair.split("; "));
     };
+    var res = [];
+    for (var splitPair of splitPairs) {
+      res.push(
+        [
+          parseFloat(splitPair[0]),
+          parseFloat(splitPair[1])
+        ]
+      );
+    }
+    return res;
+  }
+
+  render () {
+    const {initialRegion} = this.state;
+    const{route} = this.props
+
+    console.log(this.decypherCoords(route.params.selectedRoute.field_tussenstops))
+
+    return (
+      <View style={styles.container}>
+          <MainHeader/>
+          <MainStatusBar/>
+          <MapView 
+            style={styles.map}
+            initialRegion={initialRegion}
+          >
+            {this.mapMarkers()}
+          </MapView>
+      </View>
+    );
+  };
 };
 
 const styles = StyleSheet.create({
