@@ -3,14 +3,16 @@ import { StyleSheet, Text, View, TouchableOpacity, navigate } from 'react-native
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 
-export default function RegisterOptiesScreen() {
+
+
+export default function RegisterOptiesScreen() { //{navigation}
     return (
       <View style={styles.container}>
           <MainHeader/>
           <MainStatusBar/>
           <Text style={styles.titel}>Registratie</Text>
           <View>
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} > {/* onPress={() => navigation.navigate('Name')}*/ }
                     <Text style={styles.buttonText}> Registreren met e-mailadres </Text>
                 </TouchableOpacity>
           </View>

@@ -8,7 +8,7 @@ function clearCookies () {
   })
 }
 
-export default class Login extends React.Component {
+export default class Login extends React.Component{
 
     constructor(props){
         super(props)
@@ -17,6 +17,11 @@ export default class Login extends React.Component {
             wachtwoord:'',
         }
     }
+    /*
+    state = {
+      resData: []
+    }
+    */
     async submit() {
       clearCookies();
       console.log(this.state);
@@ -38,6 +43,9 @@ export default class Login extends React.Component {
                 })
               }).then(res => res.json()).then(resData =>{
                 alert(resData.message);
+                console.log(resData);
+                //this.setState({ resData: resData });//resData opslagen en meesturen naar profileScreen
+                this.props.navigation.navigate('Home');
               })} catch (e) {
               console.log(e);
           }
@@ -64,7 +72,7 @@ export default class Login extends React.Component {
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.registreren}> Nog geen account?
-                    <TouchableOpacity>
+                    <TouchableOpacity >
                       <Text style={styles.registerTextStyle}>Registreer hier</Text>
                     </TouchableOpacity>
                 </Text>

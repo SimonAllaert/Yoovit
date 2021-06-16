@@ -13,7 +13,7 @@ export default class RegisterScreen extends React.Component{
             <MainHeader/>
             <MainStatusBar/>
               <Text style={styles.titel}>Registreer</Text>
-              <Register/>
+              <Register /> {/*navigation={this.props.navigation}*/}
           </ScrollView>
         </View>
       );
