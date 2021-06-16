@@ -12,7 +12,7 @@ const Serie = ({ item, openDetailsSeries }) => {
             <Image 
                 source={{uri: 'http://yoovit.site/' + item.field_posterserie}} 
                 style={styles.image}/>
-            <Text style={styles.title}> {item.title_1} </Text>
+            <Text style={styles.title}> {item.field_copyright_posterserie} </Text>
         </TouchableOpacity>
      );
 };

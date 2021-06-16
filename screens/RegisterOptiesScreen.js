@@ -1,20 +1,28 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, navigate } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
+import { useNavigation } from '@react-navigation/native';
 
 
+function GoToRegister() {
+  const navigation = useNavigation();
 
-export default function RegisterOptiesScreen() { //{navigation}
+  return (
+    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("RegisterUserOpties")}> 
+       <Text style={styles.buttonText}> Registreren met e-mailadres </Text>
+    </TouchableOpacity>
+  )
+}
+
+export default function RegisterOptiesScreen() { 
     return (
       <View style={styles.container}>
           <MainHeader/>
           <MainStatusBar/>
           <Text style={styles.titel}>Registratie</Text>
           <View>
-                <TouchableOpacity style={styles.button} > {/* onPress={() => navigation.navigate('Name')}*/ }
-                    <Text style={styles.buttonText}> Registreren met e-mailadres </Text>
-                </TouchableOpacity>
+              <GoToRegister/>
           </View>
       </View>
     );

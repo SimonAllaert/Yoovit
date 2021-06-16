@@ -53,7 +53,7 @@ export default class Register extends React.Component {
             })
           }).then(res => res.json()).then(resData =>{
             alert(resData.message);
-            //this.props.navigation.navigate('Login');
+            this.props.navigation.navigate("LoginUser");
           })
         } catch (e) {
           console.log(e);
@@ -112,7 +112,11 @@ export default class Register extends React.Component {
                 </Text>
               </TouchableOpacity>
             </View>
-            
+            <Text style={styles.LoginOpnieuw}> Nog geen account?
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginUser')}>
+                  <Text style={styles.LoginOpnieuwText}>Login </Text>
+                </TouchableOpacity>
+              </Text>            
             {/*<View style={styles.checkboxContainer}>
               <CheckBox value={this.state.voorwaarden} onValueChange={(value) => this.OnChangeVoorwaarden(value)}/>
                 <Text style={styles.label}>Door dit aan te vinken ga je akkoord met de algemene voorwaarden.</Text>
@@ -130,6 +134,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
+    justifyContent:"center",
     color:'white',
     width: 300,
     height: 60,
@@ -189,5 +194,13 @@ const styles = StyleSheet.create({
   },
   checkbox: {
     alignSelf: "center",
+  },
+  LoginOpnieuw:{
+    marginTop:10,
+    textAlign:"center",
+  },
+  LoginOpnieuwText:{
+    color:'#F59600',
+    marginLeft: 7,
   },
 });

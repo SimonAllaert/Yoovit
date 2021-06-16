@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native'
-import Tabs from './Tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import MainNavigation from './MainNavigation';
 
+
+const Stack = createStackNavigator();
+
+
+//<LoginNavigation />
 export default function App() {
   return (
-      <NavigationContainer>
-        <Tabs />
-      </NavigationContainer>
+     <MainNavigation/>
   );
 }
 

@@ -7,13 +7,12 @@ import Register from '../components/Register';
 export default class RegisterScreen extends React.Component{
     render () {
       return (
-        
         <View style={styles.container}>
           <ScrollView contentContainerStyle={{justifyContent: 'center',  alignItems: 'center', }}>
             <MainHeader/>
             <MainStatusBar/>
               <Text style={styles.titel}>Registreer</Text>
-              <Register /> {/*navigation={this.props.navigation}*/}
+              <Register navigation={this.props.navigation}/> 
           </ScrollView>
         </View>
       );
