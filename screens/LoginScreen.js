@@ -5,13 +5,23 @@ import MainHeader from '../components/MainHeader';
 import Login from '../components/Login';
 
 export default class LoginScreen extends React.Component{
+
+  constructor(props){
+    super(props)
+  };
+  
+  Login() {
+    this.props.Login();
+  };
+
   render () {
     return (
       <View style={styles.container}>
           <MainHeader/>
           <MainStatusBar/>
           <Text style={styles.titel}>Login</Text>
-          <Login navigation={this.props.navigation}/>      
+           
+          <Login navigation={this.props.navigation} Login={this.Login}/>      
       </View>
     );
 };

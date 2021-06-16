@@ -14,6 +14,7 @@ export default class RouteScreen extends React.Component {
   };
 
   Login() {
+    console.log()
     this.props.Login();
   };
 

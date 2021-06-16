@@ -5,8 +5,6 @@ import Tabs from './Tabs';
 import LoginNavigation from './screens/LoginNavigation'
 
 
-
-//<LoginNavigation />
 export default class MainNavigation extends React.Component {
 
     constructor(props){
@@ -17,15 +15,14 @@ export default class MainNavigation extends React.Component {
     };
 
     Login() {
-        this.setState ({
-            isSignIn: true,
-        })
+        this.setState({
+          isSignIn: true,
+        });
     };
     LogOut() {
-        this.setState ({
-            isSignIn: false,
+        this.setState({
+          isSignIn: false,
         })
-        
     };
     
   render (){

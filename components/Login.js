@@ -19,7 +19,7 @@ export default class Login extends React.Component{
     }
     Login() {
       console.log(this.props)
-      this.props.navigation.state.params.Login();
+      this.props.Login;
     };
   
     /*
@@ -77,7 +77,7 @@ export default class Login extends React.Component{
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.registreren}> Nog geen account?
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('RegisterUser')}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('RegisterUserOpties')}>
                       <Text style={styles.registerTextStyle}>Registreer hier</Text>
                     </TouchableOpacity>
                 </Text>

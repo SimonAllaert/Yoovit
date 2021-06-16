@@ -9,7 +9,7 @@ function GoToRegister() {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("RegisterUserOpties")}> 
+    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("RegisterUser")}> 
        <Text style={styles.buttonText}> Registreren met e-mailadres </Text>
     </TouchableOpacity>
   )
