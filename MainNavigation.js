@@ -4,13 +4,11 @@ import { NavigationContainer } from '@react-navigation/native'
 import Tabs from './Tabs';
 import LoginNavigation from './screens/LoginNavigation'
 
-
 export default class MainNavigation extends React.Component {
-
     constructor(props){
         super(props)
         this.state = {
-            isSignIn: false,
+            isSignIn: true,
         }
     };
 

@@ -2,13 +2,19 @@ import React from 'react';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import RouteOverviewScreen from './RouteOverviewScreen';
 import CreateRouteScreen from './CreateRouteScreen';
-import StartRouteScreen from './StartRouteScreen';
 import RouteDetailsScreen from './RouteDetailsScreen';
+import AddStopScreen from './AddStopScreen';
 import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
 export default class RouteScreen extends React.Component {
+  constructor(props){
+    super(props)
+    this.state={
+    };
+  };
+
   render() {
     return (
         <Stack.Navigator initialRouteName="RouteOverview">
@@ -40,8 +46,8 @@ export default class RouteScreen extends React.Component {
             }}
           />
           <Stack.Screen 
-            name="StartRoute" 
-            component={StartRouteScreen}
+            name="AddStop" 
+            component={AddStopScreen}
             headerMode={null}
             options={{
               headerShown: false,

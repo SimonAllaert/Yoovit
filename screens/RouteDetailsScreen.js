@@ -1,28 +1,27 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 import { useNavigation } from '@react-navigation/native';
 
-function StartRoute() {
-  const navigation = useNavigation();
+const StartRoute = () => {
 
   return (
-    <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("StartRoute")}>
+    <TouchableOpacity style={styles.button} onPress={() => alert('Work in progress')}>
       <Text>Start route</Text>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 export default class RouteDetailsScreen extends React.Component {
   constructor(props){
     super(props)
     this.state={
-    }
+    };
   };
 
   render () {
-      const{route} = this.props
+      const{route} = this.props;
       const selectedRoute = route.params.selectedRoute;
 
       return (
@@ -32,7 +31,7 @@ export default class RouteDetailsScreen extends React.Component {
             <Text style={styles.titel}>{selectedRoute.title}</Text>
             <Text>{selectedRoute.field_lengteroute}</Text>
             <Text>{selectedRoute.body}</Text>
-            <StartRoute />
+            <StartRoute item={selectedRoute} />
         </View>
       );
     };
@@ -42,7 +41,7 @@ export default class RouteDetailsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffff',
   },
   titel: {
     color:'#006E3E',

@@ -1,9 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
+import { useNavigation } from '@react-navigation/native';
 
-export default class LocationsScreen extends React.Component {
+const AddStopAndGoBack = ({item}) => {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('CreateRoute', {stopToAdd: item})}>
+        <Text style={styles.listItem}>{item.name}</Text>
+      </TouchableOpacity>
+  );
+};
+
+export default class AddStopScreen extends React.Component {
   constructor(props){
     super(props)
     this.state={
@@ -23,9 +34,10 @@ export default class LocationsScreen extends React.Component {
   };
 
   renderItem = ({ item }) => {
+
     return (
       <View>
-        <Text style={styles.listItem}>{item.name}</Text>
+        <AddStopAndGoBack item={item}/>
       </View>
     );
 };
@@ -37,7 +49,7 @@ export default class LocationsScreen extends React.Component {
         <View style={styles.container}>
             <MainHeader/>
             <MainStatusBar/>
-            <Text style={styles.titel}>Locaties</Text>
+            <Text style={styles.titel}>Voeg een locatie toe</Text>
             <FlatList
               style={styles.lijst}
               data={locaties}

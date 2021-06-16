@@ -3,9 +3,7 @@ import { StyleSheet } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainNavigation from './MainNavigation';
 
-
 const Stack = createStackNavigator();
-
 
 //<LoginNavigation />
 export default function App() {

@@ -16,6 +16,7 @@ export default class MapScreen extends React.Component {
     super(props)
     this.state={
         locaties:[],
+        initialRegion,
     }
 };
 
@@ -24,7 +25,8 @@ export default class MapScreen extends React.Component {
       .then((response) => response.json())
       .then((json) => {
         this.setState({ 
-          locaties: json
+          locaties: json,
+          initialRegion: initialRegion,
         });
       })
       .catch((error) => console.error(error));
@@ -44,19 +46,21 @@ export default class MapScreen extends React.Component {
   };
 
   render () {
-      return (
-        <View style={styles.container}>
-            <MainHeader/>
-            <MainStatusBar/>
-            <MapView 
-              style={styles.map}
-              initialRegion={initialRegion}
-            >
-              {this.mapMarkers()}
-            </MapView>
-        </View>
-      );
-    };
+    const {initialRegion} = this.state;
+
+    return (
+      <View style={styles.container}>
+          <MainHeader/>
+          <MainStatusBar/>
+          <MapView 
+            style={styles.map}
+            initialRegion={initialRegion}
+          >
+            {this.mapMarkers()}
+          </MapView>
+      </View>
+    );
+  };
 };
 
 const styles = StyleSheet.create({

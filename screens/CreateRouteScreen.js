@@ -1,40 +1,91 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
+import DraggableFlatList from 'react-native-draggable-flatlist'
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
-import { withNavigation } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 
-class CreateRouteScreen extends React.Component {
+const AddStopComponent = ({addStop}) => {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('AddStop')}>
+      <Image source={require('../assets/tussenstop_toevoegen.png')}/>
+      <Text>Tussenstop toevoegen</Text>
+    </TouchableOpacity>
+  );
+};
+
+export default class CreateRouteScreen extends React.Component {
   constructor(props){
     super(props)
     this.state={
-        routes:[],
-    }
+        stops:[],
+        counterXD: 0,
+    };
   };
-
 
   renderItem = ({ item }) => {
     return (
       <View>
         <Text style={styles.listItem}>{item.name}</Text>
+        <TouchableOpacity onPress={() => this.removeStop(item)}>
+          <Image source={require('../assets/trashcan.png')}/>
+        </TouchableOpacity>
       </View>
     );
   };
 
-  render () {
-      const { routes } = this.state;
+  addStop(newStop) {
+    var isInState = false;
+    for (var stop of this.state.stops) {
+      if (newStop.tid === stop.tid) {
+        isInState = true;
+      };
+    };
+    if (!isInState){
+      this.setState({
+        stops: [...this.state.stops, newStop],
+      });
+    }
+  };
 
+  removeStop(oldStop) {
+    var newState = []
+    var oldState = [...this.state.stops];
+    for (var stop of oldState) {
+      if (oldStop.tid !== stop.tid) {
+        newState.push(stop);
+      };
+    };
+    if (newState.length === 0) {
+      alert("You can't clear the last stop!")
+    }
+    this.setState({
+      stops: newState,
+    });
+  };
+
+  render () {
+      const { stops } = this.state;
+      const {route} = this.props;
+
+      if (typeof route.params !== 'undefined') {
+        //console.log(route.params.stopToAdd);
+        this.addStop(route.params.stopToAdd);
+      };
       return (
         <View style={styles.container}>
             <MainHeader/>
             <MainStatusBar/>
             <Text style={styles.titel}>Route maken</Text>
             <Text>Vertrekpunt</Text>
-            <FlatList
-              data={routes}
+            <DraggableFlatList
+              data={stops}
               renderItem={this.renderItem}
-              keyExtractor={(item) => item.id}
+              keyExtractor={(item) => item.tid}
             />
+            <AddStopComponent />
             <Text>Eindpunt</Text>
         </View>
       );
@@ -67,5 +118,3 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
 });
-
-export default withNavigation(CreateRouteScreen);

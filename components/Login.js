@@ -17,6 +17,7 @@ export default class Login extends React.Component{
             wachtwoord:'',
         }
     }
+
     Login() {
       console.log(this.props)
       this.props.Login;
