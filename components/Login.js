@@ -17,6 +17,11 @@ export default class Login extends React.Component{
             wachtwoord:'',
         }
     }
+    Login() {
+      console.log(this.props)
+      this.props.navigation.state.params.Login();
+    };
+  
     /*
     state = {
       resData: []
@@ -45,8 +50,9 @@ export default class Login extends React.Component{
                 alert(resData.message);
                 console.log(resData);
                 //this.setState({ resData: resData });//resData opslagen en meesturen naar profileScreen
-                this.props.navigation.navigate('Home');
-              })} catch (e) {
+                this.Login();
+            })
+          } catch (e) {
               console.log(e);
           }
         }
@@ -54,7 +60,6 @@ export default class Login extends React.Component{
     render () {
         return (
             <View style={styles.container}>
-                
                 <Text style={styles.text}>Email</Text>
                 <View style={styles.EmailView}> 
                     <TextInput style={styles.TextInput} placeholder="info@yoovit.be" onChangeText={text => this.setState({name:text})}/>
@@ -72,7 +77,7 @@ export default class Login extends React.Component{
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.registreren}> Nog geen account?
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('RegisterUser')}>
                       <Text style={styles.registerTextStyle}>Registreer hier</Text>
                     </TouchableOpacity>
                 </Text>
@@ -89,6 +94,7 @@ const styles = StyleSheet.create({
     },
     button: {
       alignItems: 'center',
+      justifyContent:"center",
       color:'white',
       width: 300,
       height: 60,
