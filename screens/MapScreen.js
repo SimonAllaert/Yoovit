@@ -45,29 +45,8 @@ export default class MapScreen extends React.Component {
     ></Marker>)
   };
 
-  decypherCoords(coords) {
-    var pairs = coords.split(", ");
-    var splitPairs = [];
-    for (var pair of pairs) {
-      splitPairs.push(pair.split("; "));
-    };
-    var res = [];
-    for (var splitPair of splitPairs) {
-      res.push(
-        [
-          parseFloat(splitPair[0]),
-          parseFloat(splitPair[1])
-        ]
-      );
-    }
-    return res;
-  }
-
   render () {
     const {initialRegion} = this.state;
-    const{route} = this.props
-
-    console.log(this.decypherCoords(route.params.selectedRoute.field_tussenstops))
 
     return (
       <View style={styles.container}>
