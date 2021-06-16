@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
   titel: {
     color:'#006E3E',
     fontSize: 22,
-    marginTop: 25,
+    marginTop: 5,
     fontWeight:'bold',
     marginLeft: 30, 
   },
