@@ -7,13 +7,23 @@ import MainHeader from '../components/MainHeader';
 UIT EEN STATE LOGGED IN USER INFORMATION HALEN, STATE MOET PERMANENT IN MAIN APP ZITTEN
 */
 
-export default function HomeScreen() {
+export default function ProfileScreen() {
   return (
     <View style={styles.container}>
       <MainHeader/>
       <MainStatusBar/>
       <Text>Profiel informatie</Text>
       <Text>Naam</Text>
+      <Text>Email</Text>
+      <Text>Wachtwoord</Text>
+      <Text>Wachtwoord veranderen</Text>
+
+      <TouchableOpacity>
+        <Text>
+          Uitloggen
+        </Text>
+      </TouchableOpacity>
+
     </View>
   );
 }

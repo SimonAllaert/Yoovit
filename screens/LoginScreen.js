@@ -11,7 +11,7 @@ export default class LoginScreen extends React.Component{
           <MainHeader/>
           <MainStatusBar/>
           <Text style={styles.titel}>Login</Text>
-          <Login/>      
+          <Login navigation={this.props.navigation}/>      
       </View>
     );
 };

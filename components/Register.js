@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput,TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput,TouchableOpacity, CheckBox } from 'react-native';
 
 const RCTNetworking = require('react-native/Libraries/Network/RCTNetworking');
 function clearCookies () {
@@ -19,57 +19,69 @@ export default class Register extends React.Component {
             wachtwoord:'',
             bevestigwachtwoord:'',
             voorwaarden: false,
-            registrerenActief:false,
+            registrerenActief: true,
         }
     }
 
     async submit() {
-      clearCookies();
-      console.log(
-        JSON.stringify({
-          field_voornaam: [{"value":this.state.voornaam}],
-          field_achternaam: [{"value":this.state.achternaam}],
-          name: [{"value":this.state.email}],
-          mail: [{"value":this.state.email}],
-          pass: [{"value":this.state.wachtwoord}],
-        })
-      )
-      try{
-        await fetch('http://yoovit.site/user/register?_format=json', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
+      if (this.state.registrerenActief){
+        alert("Het wachtwoord is niet gelijk aan het elkaar en/of het wachtwoord moet minimum 8 tekens bevatten");
+      }else{
+        clearCookies();
+        console.log(
+          JSON.stringify({
             field_voornaam: [{"value":this.state.voornaam}],
             field_achternaam: [{"value":this.state.achternaam}],
             name: [{"value":this.state.email}],
             mail: [{"value":this.state.email}],
             pass: [{"value":this.state.wachtwoord}],
           })
-        }).then(res => res.json()).then(resData =>{
-          alert(resData.message);
-        })
-      } catch (e) {
-        console.log(e);
-      }
+        )
+        try{
+          await fetch('http://yoovit.site/user/register?_format=json', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              field_voornaam: [{"value":this.state.voornaam}],
+              field_achternaam: [{"value":this.state.achternaam}],
+              name: [{"value":this.state.email}],
+              mail: [{"value":this.state.email}],
+              pass: [{"value":this.state.wachtwoord}],
+            })
+          }).then(res => res.json()).then(resData =>{
+            alert(resData.message);
+            //this.props.navigation.navigate('Login');
+          })
+        } catch (e) {
+          console.log(e);
+        }
     }
-    /*onChangeWachtwoord(text){
+  }
+    onChangeWachtwoord(text){
       this.state.wachtwoord = text;
-      //this.enableRegister();
+      this.enableRegister();
     }
     onChangeBevestigWachtwoord(text){
       this.state.bevestigwachtwoord = text;
-      //this.enableRegister();
+      this.enableRegister();
     }
-    /*enableRegister(){
-      if((this.state.wachtwoord === this.state.bevestigwachtwoord) && (this.state.wachtwoord.length > 7) ){ //&& (this.state.voorwaarden)
-        //this.state.registrerenActief = true;
-      }else{
-        //this.state.registrerenActief = false;
-      }
+    /*
+    OnChangeVoorwaarden(value){
+      this.state.voorwaarden = value;
+      this.enableRegister();
     }*/
+    enableRegister(){
+      if((this.state.wachtwoord === this.state.bevestigwachtwoord) && (this.state.wachtwoord.length > 7)){ //&& (this.state.voorwaarden)
+        console.log("registreren actief is false");
+        this.setState({registrerenActief:false})
+      }else{
+        console.log("registreren actief is true");
+        this.setState({registrerenActief:true})
+      }
+    }
     render () {
         return (
             <View style={styles.container}>
@@ -87,11 +99,11 @@ export default class Register extends React.Component {
             </View>
             <Text style={styles.text}>Wachtwoord</Text>
             <View style={styles.WachtwoordView}> 
-                <TextInput style={styles.TextInput} placeholder="Wachtwoord" secureTextEntry={true} onChangeText={text => this.setState({wachtwoord:text})}/>
+                <TextInput style={styles.TextInput} placeholder="Wachtwoord" secureTextEntry={true} onChangeText={ (text) => this.onChangeWachtwoord(text) }/>
             </View>
             <Text style={styles.text}>Bevestiging Wachtwoord</Text>
             <View style={styles.BevestigWachtwoordView}> 
-                <TextInput style={styles.TextInput} placeholder="BevestigdWachtwoord" secureTextEntry={true} onChangeText={text => this.setState({bevestigwachtwoord:text})}/>
+                <TextInput style={styles.TextInput} placeholder="BevestigdWachtwoord" secureTextEntry={true} onChangeText={ (text) => this.onChangeBevestigWachtwoord(text) }/>
             </View>
             <View style={styles.button}>
               <TouchableOpacity onPress={()=>(this.submit())}>
@@ -100,10 +112,10 @@ export default class Register extends React.Component {
                 </Text>
               </TouchableOpacity>
             </View>
-
+            
             {/*<View style={styles.checkboxContainer}>
-              <CheckBox value={this.state.voorwaarden} onValueChange={setSelection} style={styles.checkbox}/>
-              <Text style={styles.label}>Door dit aan te vinken ga je akkoord met de algemene voorwaarden.</Text>
+              <CheckBox value={this.state.voorwaarden} onValueChange={(value) => this.OnChangeVoorwaarden(value)}/>
+                <Text style={styles.label}>Door dit aan te vinken ga je akkoord met de algemene voorwaarden.</Text>
         </View>*/}
         </View>
         );
@@ -170,5 +182,12 @@ const styles = StyleSheet.create({
   TextInput: {
     marginLeft: 10,
     marginTop: 12.5,
+  },
+  checkboxContainer: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  checkbox: {
+    alignSelf: "center",
   },
 });
