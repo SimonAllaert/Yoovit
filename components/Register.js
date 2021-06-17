@@ -52,7 +52,7 @@ export default class Register extends React.Component {
               pass: [{"value":this.state.wachtwoord}],
             })
           }).then(res => res.json()).then(resData =>{
-            alert(resData.message);
+            alert('Registreren gelukt');
             this.props.navigation.navigate("LoginUser");
           })
         } catch (e) {
@@ -107,7 +107,7 @@ export default class Register extends React.Component {
             </View>
             <View style={styles.button}>
               <TouchableOpacity onPress={()=>(this.submit())}>
-                <Text>
+                <Text style={styles.buttontext}>
                   Register
                 </Text>
               </TouchableOpacity>
@@ -143,6 +143,10 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     marginBottom: 10,
     marginTop: 10,
+    fontSize: 18,
+  },
+  buttontext: {
+    color:"white",
     fontSize: 18,
   },
   VoornaamView: {

@@ -13,8 +13,9 @@ export default class RouteScreen extends React.Component {
     super(props)
   };
 
-  Login() {
-    this.props.Login();
+  LoginNav() {
+    console.log('werkt')
+    this.props.LoginNav;
   };
 
   render() {
@@ -24,7 +25,7 @@ export default class RouteScreen extends React.Component {
             name="LoginUser"
             component={LoginScreen}
             headerMode={null}
-            initialParams={{Login: this.Login.bind(this)}}
+            initialParams={{LoginNav: this.LoginNav}} 
             options={{
               headerShown: false,
               animationEnabled: false,

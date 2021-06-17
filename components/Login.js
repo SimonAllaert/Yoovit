@@ -18,9 +18,9 @@ export default class Login extends React.Component{
         }
     }
 
-    Login() {
+    LoginNav() {
       console.log(this.props)
-      this.props.navigation.state.params.Login();
+      this.props.LoginNav;
     };
   
     /*
@@ -48,10 +48,10 @@ export default class Login extends React.Component{
                   pass: this.state.wachtwoord,
                 })
               }).then(res => res.json()).then(resData =>{
-                alert(resData.message);
-                console.log(resData);
+                //alert(resData.message);
+                alert('Login gelukt');
                 //this.setState({ resData: resData });//resData opslagen en meesturen naar profileScreen
-                this.Login();
+                this.LoginNav();
             })
           } catch (e) {
               console.log(e);
@@ -72,13 +72,13 @@ export default class Login extends React.Component{
                 <Text style={styles.wachtwoordVergeten}> Wachtwoord vergeten? </Text>
                 <View style={styles.button}>
                   <TouchableOpacity onPress={()=>(this.submit())}>
-                    <Text>
+                    <Text style={styles.buttontext}>
                       Login
                     </Text>
                   </TouchableOpacity>
                 </View>
                 <Text style={styles.registreren}> Nog geen account?
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate('RegisterUser')}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('RegisterUserOpties')}>
                       <Text style={styles.registerTextStyle}>Registreer hier</Text>
                     </TouchableOpacity>
                 </Text>
@@ -104,6 +104,10 @@ const styles = StyleSheet.create({
       borderRadius: 40,
       marginBottom: 10,
       marginTop: 10,
+      fontSize: 18,
+    },
+    buttontext: {
+      color:"white",
       fontSize: 18,
     },
     registerText:{

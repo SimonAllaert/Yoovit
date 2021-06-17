@@ -8,7 +8,7 @@ export default class MainHeader extends React.Component {
       <Header 
         backgroundColor='#00a51e' 
         containerStyle= {{
-            height: 120,
+            height: 110,
         }}>
         <View/>
         <Image 

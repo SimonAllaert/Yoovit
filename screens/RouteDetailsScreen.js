@@ -104,9 +104,11 @@ export default class RouteDetailsScreen extends React.Component {
             <MainHeader/>
             <MainStatusBar/>
             <Text style={styles.titel}>{selectedRoute.title}</Text>
-            <Text>{selectedRoute.field_lengteroute}</Text>
-            <Text>{selectedRoute.body}</Text>
-            <StartRoute item={selectedRoute} />
+            <View style={styles.DerdeContainer}>
+              <Text>{selectedRoute.body}</Text>
+              <Text style={styles.lengte}>De route is <Text style={styles.routelengte}>{selectedRoute.field_lengteroute}</Text> lang.</Text>
+              <StartRoute item={selectedRoute} />
+            </View>
         </View>
       );
     };
@@ -123,11 +125,11 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginLeft: 25,
     fontWeight:'bold',
-    marginTop: 5,
+    marginTop: 20,
   },
   button: {
     alignItems: 'center',
-    color:'white',
+    justifyContent:'center',
     width: 300,
     height: 60,
     padding: 10,
@@ -137,4 +139,26 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
   },
+  buttontext: {
+    color:"white",
+    fontSize: 18,
+  },
+  DerdeContainer:{
+    marginLeft: 40,
+    right: 10,
+    width: 320,
+    marginTop:40,
+  },
+  routelengte: {
+    textAlign: "right",
+    color:"#00A51E",
+    marginRight:30,
+    marginTop: 0,
+    fontSize:15,
+  },
+  lengte: {
+    marginRight:30,
+    marginTop: 30,
+    fontSize:15,
+  }
 });

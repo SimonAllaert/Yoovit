@@ -15,6 +15,11 @@ export default class Logout extends React.Component{
         super(props)
     }
 
+    LogoutNav() {
+      console.log(this.props)
+      this.props.LogoutNav();
+    };
+
     componentWillMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButtonClick);
     }
@@ -64,12 +69,14 @@ export default class Logout extends React.Component{
                 <Text style={styles.text}>Email</Text>
                 <Text style={styles.text}>Wachtwoord</Text>
                 <Text style={styles.text}>Wachtwoord veranderen?</Text>
-                <View style={styles.button}>
-                  <TouchableOpacity onPress={()=>( this.props.navigation.navigate("LoginUser"))}> 
-                    <Text style={styles.buttonText}>
-                      Logout
-                    </Text>
-                  </TouchableOpacity>
+                <View style={styles.Tweedecontainer}>
+                  <View style={styles.button}>
+                    <TouchableOpacity onPress={()=>(this.LogoutNav)}> 
+                      <Text style={styles.buttonText}>
+                        Logout
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
             </View>
         );
@@ -81,7 +88,12 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: '#fff',
       marginTop: 20,
-      alignItems:"flex-start"
+    },
+    Tweedecontainer:{
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent:'center',
     },
     button: {
       alignItems: 'center',

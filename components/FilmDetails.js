@@ -29,6 +29,9 @@ export default class FilmDetails extends React.Component {
             <Text style={styles.bodyText}>
               {this.state.film.body}
             </Text>
+            <View style={styles.tweedeContainer}>
+            <Text style={styles.bodyText}>{this.state.film.field_locatie} </Text>
+            </View>
         </View>
     );
   };
@@ -40,11 +43,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
   },
+   tweedeContainer:{
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent:'center',
+  },
   image: {
     height: 200,
     width:400,
     justifyContent:'center',
-    left: 10,
   },
   title: {
     color:'#006E3E',
@@ -54,7 +62,9 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   bodyText: {
-    left: 10,
+    marginLeft: 40,
     right: 10,
+    width: 300,
+    marginTop:40,
   },
 });

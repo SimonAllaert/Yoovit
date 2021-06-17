@@ -12,26 +12,28 @@ export default class MainNavigation extends React.Component {
         }
     };
 
-    Login() {
-        this.setState ({
-            isSignIn: true,
-        })
+    LoginNav = () => {
+      console.log(this.state.isSignIn);
+      this.setState({
+        isSignIn: true,
+      });
     };
-    LogOut() {
-        this.setState ({
-            isSignIn: false,
-        })
-        
+
+    LogoutNav = () => {
+      this.setState({
+        isSignIn: false,
+      });
     };
-    
+
   render (){
+    console.log(this.state.isSignIn);
       const{isSignIn}= this.state;
     return (
       <NavigationContainer>
           {isSignIn ? (
-            <Tabs />
+            <Tabs LogoutNav={this.LogoutNav}/>
           ): (
-            <LoginNavigation Login={this.Login}/>
+            <LoginNavigation LoginNav={this.LoginNav}/>
           )}
       </NavigationContainer>
   );
