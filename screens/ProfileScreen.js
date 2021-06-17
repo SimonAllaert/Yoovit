@@ -11,6 +11,15 @@ navigation={this.props.navigation}
 */
 
 export default class ProfileScreen extends React.Component{
+  constructor(props){
+    super(props)
+  };
+  
+  LogoutNav() {
+    console.log(this.props)
+    this.props.LogoutNav();
+  };
+
   render () {
     return (
       <View style={styles.container}>
@@ -18,7 +27,7 @@ export default class ProfileScreen extends React.Component{
         <MainStatusBar/>
         <View style={styles.tweedeContainer}>
           <Text style={styles.titel}>Profiel informatie</Text>
-          <Logout navigation={this.props.navigation} />  
+          <Logout navigation={this.props.navigation} LogoutNav={this.LogoutNav}/>  
         </View>
       </View>
     );

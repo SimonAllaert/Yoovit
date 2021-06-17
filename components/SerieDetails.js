@@ -29,6 +29,9 @@ export default class SerieDetails extends React.Component {
             <Text style={styles.bodyText}>
               {this.state.series.body}
             </Text>
+            <View style={styles.tweedeContainer}>
+              <Text style={styles.bodyText}>{this.state.series.field_locatie_serie}</Text>
+            </View>
         </View>
     );
   };
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
   },
   image: {
     height: 200,
-    width: 200,
+    width:400,
     justifyContent:'center',
   },
   title: {
@@ -53,7 +56,9 @@ const styles = StyleSheet.create({
     marginLeft: 30,
   },
   bodyText: {
-    left: 10,
+    marginLeft: 40,
     right: 10,
+    width: 300,
+    marginTop:40,
   },
 });

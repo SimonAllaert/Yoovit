@@ -10,8 +10,9 @@ export default class LoginScreen extends React.Component{
     super(props)
   };
   
-  Login() {
-    this.props.Login();
+  LoginNav() {
+    console.log(this.props)
+    this.props.LoginNav;
   };
 
   render () {
@@ -21,7 +22,7 @@ export default class LoginScreen extends React.Component{
           <MainStatusBar/>
           <Text style={styles.titel}>Login</Text>
            
-          <Login navigation={this.props.navigation} Login={this.Login}/>      
+          <Login navigation={this.props.navigation} LoginNav={this.LoginNav}/>      
       </View>
     );
 };
