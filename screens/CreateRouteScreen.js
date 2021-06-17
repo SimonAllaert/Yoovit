@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
-import DraggableFlatList from 'react-native-draggable-flatlist'
+import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 import { useNavigation } from '@react-navigation/native';
@@ -16,12 +15,21 @@ const AddStopComponent = ({addStop}) => {
   );
 };
 
+const StartRoute = ({route}) => {
+  const navigation = useNavigation();
+
+  return(
+    <TouchableOpacity style={styles.button} onPress={() => alert('Work in progress')}>
+      <Text>Start route</Text>
+    </TouchableOpacity>
+  )
+}
+
 export default class CreateRouteScreen extends React.Component {
   constructor(props){
     super(props)
     this.state={
         stops:[],
-        counterXD: 0,
     };
   };
 
@@ -75,19 +83,20 @@ export default class CreateRouteScreen extends React.Component {
         this.addStop(route.params.stopToAdd);
       };
       return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <MainHeader/>
             <MainStatusBar/>
             <Text style={styles.titel}>Route maken</Text>
             <Text>Vertrekpunt</Text>
-            <DraggableFlatList
+            <FlatList
               data={stops}
               renderItem={this.renderItem}
               keyExtractor={(item) => item.tid}
             />
             <AddStopComponent />
             <Text>Eindpunt</Text>
-        </View>
+            <StartRoute />
+        </ScrollView>
       );
     };
 
