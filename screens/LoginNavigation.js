@@ -7,7 +7,7 @@ import LoginScreen from './LoginScreen';
 
 const Stack = createStackNavigator();
 
-export default class RouteScreen extends React.Component {
+export default class LoginNavigation extends React.Component {
 
   constructor(props){
     super(props)

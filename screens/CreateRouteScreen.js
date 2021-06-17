@@ -8,9 +8,12 @@ const AddStopComponent = ({addStop}) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('AddStop')}>
+    <TouchableOpacity 
+      style={styles.addStop}
+      onPress={() => navigation.navigate('AddStop')}
+    >
       <Image source={require('../assets/tussenstop_toevoegen.png')}/>
-      <Text>Tussenstop toevoegen</Text>
+      <Text style={styles.addStopText}>Tussenstop toevoegen</Text>
     </TouchableOpacity>
   );
 };
@@ -19,8 +22,11 @@ const StartRoute = ({route}) => {
   const navigation = useNavigation();
 
   return(
-    <TouchableOpacity style={styles.button} onPress={() => alert('Work in progress')}>
-      <Text>Start route</Text>
+    <TouchableOpacity 
+      style={styles.button}
+      onPress={() => alert('Work in progress')}
+    >
+      <Text style={styles.whiteText}>Start route</Text>
     </TouchableOpacity>
   )
 }
@@ -50,9 +56,12 @@ export default class CreateRouteScreen extends React.Component {
 
   renderItem = ({ item }) => {
     return (
-      <View>
+      <View style={styles.stopInList}>
         <Text style={styles.listItem}>{item.name}</Text>
-        <TouchableOpacity onPress={() => this.removeStop(item)}>
+        <TouchableOpacity
+          style={styles.deleteIcon}
+          onPress={() => this.removeStop(item)}
+        >
           <Image source={require('../assets/trashcan.png')}/>
         </TouchableOpacity>
       </View>
@@ -102,15 +111,17 @@ export default class CreateRouteScreen extends React.Component {
             <MainHeader/>
             <MainStatusBar/>
             <Text style={styles.titel}>Route maken</Text>
-            <Text>Vertrekpunt</Text>
+            <Text style={styles.endPoint}>Vertrekpunt</Text>
             <FlatList
               data={stops}
               renderItem={this.renderItem}
               keyExtractor={(item) => item.tid}
             />
             <AddStopComponent />
-            <Text>Eindpunt</Text>
-            <StartRoute />
+            <Text style={styles.endPoint}>Eindpunt</Text>
+            <View style={styles.tweedeContainer}>
+              <StartRoute />
+            </View>
             <BackToOverview />
         </View>
       );
@@ -147,5 +158,37 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 55,
     left: 20,
+  },
+  endPoint: {
+    marginLeft: 10,
+    fontSize: 12,
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  addStop: {
+    flexDirection: 'row',
+    marginLeft: 10,
+  },
+  addStopText: {
+    marginTop: 3,
+    marginLeft: 10,
+  },
+  stopInList: {
+    flexDirection: 'row',
+    marginLeft: 30,
+  },
+  deleteIcon: {
+    marginLeft: 20,
+  },
+  whiteText: {
+    color: '#ffffff',
+    fontSize: 18,
+    marginTop: 5,
+  },
+  tweedeContainer:{
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent:'center',
   },
 });

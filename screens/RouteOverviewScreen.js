@@ -20,10 +20,8 @@ const GoToRouteDetails = ({item}) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate("RouteDetails", {selectedRoute: item})}>
         <View style={styles.listElementContainer}>
-          <View>
             <Text style={styles.textRoute}> {item.title}</Text> 
             <Text style={styles.textLengte}>{item.field_lengteroute}</Text>
-          </View>
         </View>
     </TouchableOpacity>
   )
@@ -113,20 +111,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   listElementContainer: {
-    display: 'flex',
-  },
-  textRoute: {
-    textAlign: "left",
+    flexDirection: 'row',
     marginTop: 50,
     marginBottom:0,
     marginLeft:30,
-    fontSize:15,
+  },
+  textRoute: {
+    fontSize: 15,
   },
   textLengte: {
-    textAlign: "right",
     color:"#00A51E",
-    marginRight:30,
-    marginTop: 0,
-    fontSize:12,
-  }
+    fontSize: 15,
+    marginLeft: 140,
+  },
 });

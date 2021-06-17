@@ -9,7 +9,7 @@ const StartRoute = ({item}) => {
 
   return (
     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Map', {selectedRoute: item})}>
-      <Text>Start route</Text>
+      <Text style={styles.whiteText}>Start route</Text>
     </TouchableOpacity>
   );
 };
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#00A51E',
     borderRadius: 40,
     marginBottom: 10,
-    marginTop: 10,
+    marginTop: 40,
     fontSize: 18,
   },
   buttontext: {
@@ -182,5 +182,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 55,
     left: 20,
+  },
+  whiteText: {
+    color: '#ffffff',
   },
 });
