@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
@@ -7,7 +6,6 @@ import MapScreen from './screens/MapScreen';
 import RoutesScreen from './screens/RouteScreen';
 import LocationsScreen from './screens/LocationsScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import LoginScreen from './screens/LoginScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -54,7 +52,7 @@ export default class Tabs extends React.Component {
                     }} 
                 />
                 <Tab.Screen
-                    name='Kaart'
+                    name='Map'
                     component={MapScreen}
                     options={{
                         tabBarLabel: 'Kaart',
@@ -64,7 +62,7 @@ export default class Tabs extends React.Component {
                     }}
                 />
                 <Tab.Screen
-                    name='Locatie'
+                    name='Location'
                     component={LocationsScreen}
                     options={{
                         tabBarLabel: 'Locatie',
@@ -74,7 +72,7 @@ export default class Tabs extends React.Component {
                     }}
                 />
                 <Tab.Screen
-                    name='Profiel'
+                    name='Profile'
                     component={ProfileScreen}
                     initialParams={{LogoutNav: this.LogoutNav}}
                     options={{

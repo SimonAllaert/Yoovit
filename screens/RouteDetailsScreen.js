@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, Image, View, TouchableOpacity } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 import { useNavigation } from '@react-navigation/native';
@@ -10,6 +10,21 @@ const StartRoute = ({item}) => {
   return (
     <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Map', {selectedRoute: item})}>
       <Text>Start route</Text>
+    </TouchableOpacity>
+  );
+};
+
+function BackToOverview() {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity
+      style={styles.backButton}
+      onPress={() => navigation.navigate('RouteOverview')}
+    >
+      <Image
+        source={require('../assets/back_button.png')}
+      />
     </TouchableOpacity>
   );
 };
@@ -109,6 +124,7 @@ export default class RouteDetailsScreen extends React.Component {
               <Text style={styles.lengte}>De route is <Text style={styles.routelengte}>{selectedRoute.field_lengteroute}</Text> lang.</Text>
               <StartRoute item={selectedRoute} />
             </View>
+            <BackToOverview />
         </View>
       );
     };
@@ -160,5 +176,11 @@ const styles = StyleSheet.create({
     marginRight:30,
     marginTop: 30,
     fontSize:15,
-  }
+  },
+  backButton: {
+    backgroundColor: '#00a51e',
+    position: 'absolute',
+    top: 55,
+    left: 20,
+  },
 });

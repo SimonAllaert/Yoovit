@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   backButton: {
     backgroundColor: '#00a51e',
     position: 'absolute',
-    top: 30,
+    top: 55,
     left: 20,
   },
   hiddenContainer: {

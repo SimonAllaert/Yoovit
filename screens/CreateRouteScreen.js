@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Image } from 'react-native';
 import MainStatusBar from '../components/MainStatusBar';
 import MainHeader from '../components/MainHeader';
 import { useNavigation } from '@react-navigation/native';
@@ -24,6 +24,21 @@ const StartRoute = ({route}) => {
     </TouchableOpacity>
   )
 }
+
+function BackToOverview() {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity
+      style={styles.backButton}
+      onPress={() => navigation.navigate('RouteOverview')}
+    >
+      <Image
+        source={require('../assets/back_button.png')}
+      />
+    </TouchableOpacity>
+  );
+};
 
 export default class CreateRouteScreen extends React.Component {
   constructor(props){
@@ -83,7 +98,7 @@ export default class CreateRouteScreen extends React.Component {
         this.addStop(route.params.stopToAdd);
       };
       return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <MainHeader/>
             <MainStatusBar/>
             <Text style={styles.titel}>Route maken</Text>
@@ -96,7 +111,8 @@ export default class CreateRouteScreen extends React.Component {
             <AddStopComponent />
             <Text>Eindpunt</Text>
             <StartRoute />
-        </ScrollView>
+            <BackToOverview />
+        </View>
       );
     };
 
@@ -125,5 +141,11 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     fontSize: 18,
+  },
+  backButton: {
+    backgroundColor: '#00a51e',
+    position: 'absolute',
+    top: 55,
+    left: 20,
   },
 });
